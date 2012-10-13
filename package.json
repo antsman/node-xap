@@ -9,5 +9,9 @@
   "scripts": {
     "test": "./node_modules/.bin/jasmine-node test",
     "watch": "./node_modules/.bin/jasmine-node --autotest ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/bigkevmcd/node-xap.git"
   }
 }

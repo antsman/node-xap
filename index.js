@@ -1,0 +1,60 @@
+'use strict';
+
+var dgram = require('dgram'),
+    util = require('util');
+
+/*
+ * Generates an xAP message block, given a messageType and object.
+ */
+var generateMessage = function (messageType, message) {
+    var body = messageType + '\n{\n';
+    Object.keys(message).forEach(function(key) {
+      body += util.format('%s=%s\n', key, message[key]);
+    });
+    body += '}\n';
+    return body;
+};
+
+var XAPBroadcaster = function (options) {
+  var self = this;
+  options = options || {};
+
+  self.version = options.version || 12;
+  self.class = options.class;
+  self.source = options.source;
+  self.uid = options.uid;
+  self.broadcast = options.broadcast || '255.255.255.255';
+  self.port = options.port || 3639;
+
+  if (typeof self.class === 'undefined') {
+    throw new Error('Must provide a class.');
+  }
+  if (typeof self.source === 'undefined') {
+    throw new Error('Must provide a source.');
+  }
+  if (typeof self.uid === 'undefined') {
+    throw new Error('Must provide a uid.');
+  }
+}
+
+XAPBroadcaster.prototype.send = function (messageType, message, callback) {
+  var self = this,
+      client = dgram.createSocket('udp4'),
+      header = generateMessage(
+        'xap-header',
+        {v: self.version, hop: 1, uid: self.uid, class: self.class, source: self.source}),
+       message = generateMessage(messageType, message),
+       buffer = new Buffer(header + message);
+
+  client.bind(3639);
+  client.setBroadcast(true);
+  client.send(buffer, 0, buffer.length, self.port, self.broadcast, function(err, bytes) {
+    client.close();
+    if (typeof callback === 'function') {
+      callback(err, bytes);
+    }
+  });
+}
+
+exports.XAPBroadcaster = XAPBroadcaster;
+exports.generateMessage = generateMessage;

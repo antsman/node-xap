@@ -1,0 +1,13 @@
+{
+  "name": "xap",
+  "version": "0.0.1",
+  "author" : "Kevin McDermott <kevin@bigkevmcd.com>",
+  "main": "index.js",
+  "devDependencies": {
+    "jasmine-node": "*"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine-node test",
+    "watch": "./node_modules/.bin/jasmine-node --autotest ."
+  }
+}

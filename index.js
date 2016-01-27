@@ -46,13 +46,14 @@ XAPBroadcaster.prototype.send = function (messageType, message, callback) {
        message = generateMessage(messageType, message),
        buffer = new Buffer(header + message);
 
-  client.bind(3639);
-  client.setBroadcast(true);
-  client.send(buffer, 0, buffer.length, self.port, self.broadcast, function(err, bytes) {
-    client.close();
-    if (typeof callback === 'function') {
-      callback(err, bytes);
-    }
+  client.bind(function() {
+    client.setBroadcast(true);
+    client.send(buffer, 0, buffer.length, self.port, self.broadcast, function(err, bytes) {
+      client.close();
+      if (typeof callback === 'function') {
+        callback(err, bytes);
+      }
+    });
   });
 }
 

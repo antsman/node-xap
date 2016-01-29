@@ -43,8 +43,9 @@ XAPBroadcaster.prototype.send = function (messageType, message, callback) {
       header = generateMessage(
         'xap-header',
         {v: self.version, hop: 1, uid: self.uid, class: self.class, source: self.source}),
-       message = generateMessage(messageType, message),
-       buffer = new Buffer(header + message);
+
+  message = generateMessage(messageType, message),
+  buffer = new Buffer(header + message);
 
   client.bind(function() {
     client.setBroadcast(true);

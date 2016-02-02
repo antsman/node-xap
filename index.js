@@ -43,16 +43,18 @@ XAPBroadcaster.prototype.send = function (messageType, message, callback) {
       header = generateMessage(
         'xap-header',
         {v: self.version, hop: 1, uid: self.uid, class: self.class, source: self.source}),
-       message = generateMessage(messageType, message),
-       buffer = new Buffer(header + message);
 
-  client.bind(3639);
-  client.setBroadcast(true);
-  client.send(buffer, 0, buffer.length, self.port, self.broadcast, function(err, bytes) {
-    client.close();
-    if (typeof callback === 'function') {
-      callback(err, bytes);
-    }
+  message = generateMessage(messageType, message),
+  buffer = new Buffer(header + message);
+
+  client.bind(function() {
+    client.setBroadcast(true);
+    client.send(buffer, 0, buffer.length, self.port, self.broadcast, function(err, bytes) {
+      client.close();
+      if (typeof callback === 'function') {
+        callback(err, bytes);
+      }
+    });
   });
 }
 

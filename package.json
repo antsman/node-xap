@@ -1,6 +1,6 @@
 {
   "name": "xap",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author" : "Kevin McDermott <kevin@bigkevmcd.com>",
   "main": "index.js",
   "devDependencies": {

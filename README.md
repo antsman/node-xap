@@ -2,7 +2,7 @@ To Install
 ----------
 
 <pre>
-    npm install xap
+npm install xap
 </pre>
 
 To Use

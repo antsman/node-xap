@@ -1,17 +1,39 @@
 {
-  "name": "xap",
-  "version": "0.0.4",
-  "author" : "Kevin McDermott <kevin@bigkevmcd.com>",
-  "main": "index.js",
+  "author": {
+    "email": "kevin@bigkevmcd.com",
+    "name": "Kevin McDermott"
+  },
+  "bugs": {
+    "url": "https://github.com/antsman/node-xap/issues"
+  },
+  "dependencies": {},
+  "description": "xAP Broadcast for Node.js",
   "devDependencies": {
     "jasmine-node": "*"
+  },
+  "directories": {},
+  "homepage": "https://github.com/antsman/node-xap",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "bigkevmcd",
+      "email": "kevin@bigkevmcd.com"
+    },
+    {
+      "name": "antsman",
+      "email": "aivo.antsman@gmail.com"
+    }
+  ],
+  "name": "xap",
+  "optionalDependencies": {},
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antsman/node-xap"
   },
   "scripts": {
     "test": "./node_modules/.bin/jasmine-node test",
     "watch": "./node_modules/.bin/jasmine-node --autotest ."
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/antsman/node-xap"
-  }
+  "version": "0.0.5"
 }

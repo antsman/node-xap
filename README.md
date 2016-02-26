@@ -14,10 +14,10 @@ var xap = require('xap'),
         {class: 'test', source: 'testing', uid: 'FF123400'});
 
 broadcaster.send('temp.current', {'temp': 25, 'units': 'C'});
+
 </pre>
 
-You probably want to hook it up to something that generates messages more realistically, 
-for example, to [bigkevmcd rfxcom library](https://github.com/bigkevmcd/node-rfxcom) ...
+You probably want to hook it up to something that generates messages more realistically, for example, to [bigkevmcd rfxcom library](https://github.com/bigkevmcd/node-rfxcom) ...
 
 <pre>
 var RfxCom = require('rfxcom').RfxCom,

@@ -20,10 +20,10 @@ var XAPBroadcaster = function (options) {
   options = options || {};
 
   self.version = options.version || 12;
+  self.uid = options.uid;
   self.class = options.class;
   self.source = options.source;
   self.target = options.target;
-  self.uid = options.uid;
   self.broadcast = options.broadcast || '255.255.255.255';
   self.port = options.port || 3639;
 
@@ -41,13 +41,17 @@ var XAPBroadcaster = function (options) {
 XAPBroadcaster.prototype.send = function (messageType, message, callback) {
   var self = this,
       client = dgram.createSocket('udp4'),
-      header = {v: self.version, hop: 1, uid: self.uid, class: self.class, source: self.source},
-      message = generateMessage(messageType, message);
+      header = {v: self.version, hop: 1, uid: self.uid, class: self.class, source: self.source};
+
+  if (typeof messageType === 'undefined') {
+    throw new Error('Must provide a message type.');
+  }
 
   if (typeof self.target != 'undefined') {
     header.target = self.target;
   }
   header = generateMessage('xap-header', header);
+  var message = generateMessage(messageType, message);
   var buffer = new Buffer(header + message);
 
   client.bind(function() {

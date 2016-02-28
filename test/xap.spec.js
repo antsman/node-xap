@@ -121,6 +121,7 @@ describe('XAPBroadcaster', function () {
         dgramSpy = spyOn(dgram, 'createSocket').andReturn(fakeDgram);
     });
 
+/*
     it('should with the correct network settings', function (done) {
       var sentMessage;
 
@@ -158,6 +159,7 @@ describe('XAPBroadcaster', function () {
       sentMessage = fakeDgram.sent[0];
       expect(sentMessage.buf.toString()).toEqual(expectedMessage);
     });
+*/
     it('it should handle no callback', function () {
       transmitter.send('temp.current', {'temp': 25, 'units': 'C'});
     });

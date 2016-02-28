@@ -35,5 +35,5 @@
     "test": "./node_modules/.bin/jasmine-node test",
     "watch": "./node_modules/.bin/jasmine-node --autotest ."
   },
-  "version": "0.1.1"
+  "version": "0.1.2"
 }

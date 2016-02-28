@@ -13,6 +13,7 @@ var xap = require('xap'),
     );
 
 broadcaster.send('temp.current', {'temp': 25, 'units': 'C'});
+
 </pre>
 
 ![xfx-viewer-shot](http://antsman.github.io/node-xap/xfx-viewer-xap-demo.png)

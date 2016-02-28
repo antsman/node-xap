@@ -9,7 +9,7 @@ npm install xap
 <pre>
 var xap = require('xap'),
     broadcaster = new xap.XAPBroadcaster(
-        {class: 'test', source: 'testing', uid: 'FF123400'}
+        {class: 'test', source: 'vendor.device.testing', uid: 'FF123400'}
     );
 
 broadcaster.send('temp.current', {'temp': 25, 'units': 'C'});
@@ -32,3 +32,5 @@ rfxcom.on("th3", function(evt) {
 
 rfxcom.initialise();
 </pre>
+
+![xfx-viewer-shot](http://antsman.github.io/node-xap/xfx-viewer-xap-demo.png)
